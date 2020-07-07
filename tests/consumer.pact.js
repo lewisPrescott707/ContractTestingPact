@@ -2,10 +2,10 @@ const path = require("path")
 const chai = require("chai")
 const { Pact, Matchers } = require("@pact-foundation/pact")
 const chaiAsPromised = require("chai-as-promised")
-const { string } = require("@pact-foundation/pact/dsl/matchers")
 const expect = chai.expect
 chai.use(chaiAsPromised)
 const { string } = Matchers;
+const get = require("../src/get");
 
 describe('Consumer Test', () => {
     const provider = new Pact({
@@ -22,7 +22,7 @@ describe('Consumer Test', () => {
         state: "user token",
         uponReceiving: "Get user token",
         withRequest: {
-            method: "Get",
+            method: "GET",
             path: "/token/1234",
             headers: {Accept: "application/json, text/plain, */*"}
         },
